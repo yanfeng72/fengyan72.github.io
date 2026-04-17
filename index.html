@@ -1,122 +1,262 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yan Feng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-	<head>
-		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
-		<title>Yan Feng's Blog</title>
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="keywords" content="Yan Feng, Yan Feng's Blog" />
-		<meta name="description" content="God feeds every bird, but doesn't put it right in its nest." />
-		<!--加载textillate文字特效库-->
-		<link rel="stylesheet" href="assets/animate.css">
-		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<script src="assets/jquery.lettering.js"></script>
-		<script src="jquery.textillate.js"></script>
-		<script type="text/javascript">
-			$(function() {
-				$('.text1').textillate({ in: { effect: 'flipInX' } });
-				$('.text3').textillate({
-					initialDelay: 9000,
-					in: { effect: 'bounceInDown' }
-				});
-			})
-		</script>
-		<script>
-			(function() {
-				var bp = document.createElement('script');
-				var curProtocol = window.location.protocol.split(':')[0];
-				if(curProtocol === 'https') {
-					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-				} else {
-					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-				}
-				var s = document.getElementsByTagName("script")[0];
-				s.parentNode.insertBefore(bp, s);
-			})();
-		</script>
-		<!--添加百度统计-->
-		<script>
-        		var _hmt = _hmt || [];
-        		(function() {
-            			var hm = document.createElement("script");
-            			hm.src = "https://hm.baidu.com/hm.js?a0de0062ecc8e145d335478668581635";
-            			var s = document.getElementsByTagName("script")[0]; 
-            			s.parentNode.insertBefore(hm, s);
-        		})();
-        	</script>
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/skel.min.js"></script>
-		<script src="js/init.js"></script>
-		<noscript>
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-wide.css" />
-			<link rel="stylesheet" href="css/style-noscript.css" />
-		</noscript>
-		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-	</head>
-<style>
-.blog_txt{
-	font-size: 22px;
-    color: #000000;
-	font-weight: bold;
-}
-</style>
-	<body class="loading">
-		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="main">
+<!-- ══ NAV ══════════════════════════════════════════════════ -->
+<nav>
+  <div class="inner">
+    <a href="#top" class="brand">Yan Feng</a>
+    <ul>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#cv">Education</a></li>
+    </ul>
+  </div>
+</nav>
 
-				<!-- Header -->
-				<header id="header" style="height:70vh;">
-					<div align="center">
-						<img src="css/images/portrait.jpg" style="width:100px; height:100px; border-radius:50%; overflow:hidden;" />
-					</div>
-					<!--<h2>一月筠</h2>-->
-					<font class="text1" style="text-align: center; text-decoration: none; color: white; font: '微软雅黑'; font-size: 24px;">Yan Feng</font>
-					<p class="text3" align="center">God feeds every bird, but doesn't put it right in its nest.</p>
-					<nav>
-						<ul>
-							<li>
-								<div>
-								<span  class="blog_txt">BLOG</span>
-								<a href="https://fengyan72.github.io/blog/" class="fa  fa-pencil-square-o" style="color:mediumspringgreen"><span>Blog</span></a>
-								</div>
-							</li>
-							<li>
-								<span class="blog_txt">CV</span>
-								<a href="https://fengyan72.github.io/blog/about/" class="fa fa-id-card-o"><span>CV</span></a>
-								
-							
-							</li>
-							<li>
-								<span class="blog_txt">Project</span>
-								<a href="https://fengyan72.github.io/blog/categories/projects/" class="fa fa-bar-chart"><span>Project</span></a>
-							
-							</li>
-							<li>
-								<span class="blog_txt">GitHub</span>
-								<a href="https://github.com/fengyan72" class="fa fa-github"><span>Github</span></a>
-						
-							</li>
-							<li>
-								<span class="blog_txt">BOOK</span>
-								<a href="https://fengyan72.github.io/blog/categories/book/" class="fa fa-book"><span>Book</span></a>
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<div id="top" class="hero">
+  <div class="hero-inner">
 
-							</li>
-						</ul>
-					</nav>
-				</header>
-				<footer id="footer">
-					<div style="text-align:center;">
-						Powered by Yan Feng
-					</div>
-				</footer>
-			</div>
-		</div>
-	</body>
+    <div class="hero-left">
+      <img src="assets/photo.png" alt="Yan Feng" style="width:148px;height:185px;object-fit:cover;object-position:center top;display:block;">
+    </div>
 
+    <div class="hero-right">
+      <h1>Yan Feng</h1>
+      <p class="affil">Ph.D. Student in Education Policy and Social Context</p>
+      <p class="affil">School of Education, University of California, Irvine</p>
+      <div class="contact-line">
+        <a href="mailto:yanf16@uci.edu">yanf16@uci.edu</a>
+        <span class="sep">·</span>
+        <a href="assets/Feng_Yan_CV.pdf" target="_blank">Curriculum Vitae</a>
+      </div>
+      <p class="bio">
+        My research sits at the intersection of higher education policy and teaching and learning,
+        with a focus on how decisions about course format, scheduling, and delivery modality shape
+        student learning outcomes. I work primarily with large-scale administrative data and apply
+        causal inference methods to questions that bear directly on institutional policy and student
+        success. I have also collaborated with researchers in learning sciences and educational
+        psychology, drawing on surveys, designed interventions, multimodal data, and interviews to
+        examine how instructional and contextual factors shape student learning and development.
+        My current work also examines how technology shapes teaching, learning, and student outcomes,
+        including the design of AI-driven behavioral interventions to support college student success.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ RESEARCH ══════════════════════════════════════════════ -->
+<section id="research">
+  <h2>Research</h2>
+
+  <div class="interests">
+    <span class="tag">Higher Education Policy</span>
+    <span class="tag">Teaching &amp; Learning</span>
+    <span class="tag">Instructional Design</span>
+    <span class="tag">Online Education</span>
+    <span class="tag">Causal Inference</span>
+    <span class="tag">Community Colleges</span>
+    <span class="tag">AI in Education</span>
+    <span class="tag">Transfer Students</span>
+  </div>
+
+  <p class="proj-group-label">Current Projects</p>
+
+  <div class="project">
+    <div class="project-header">
+      <h3>The Effects of Condensed Course Formats on Student Achievement</h3>
+      <span class="meta">UCI · 2025–Present</span>
+    </div>
+    <p class="role">Graduate Student Researcher · Ascendium Grant · PIs: Dr. Di Xu &amp; Dr. XunFei Li</p>
+    <p>Analyze large-scale administrative data from the Virginia Community College System (VCCS) to estimate the causal effects of condensed course formats on students' academic and labor market outcomes using quasi-experimental methods, including two-way fixed effects and IV approaches. Conduct heterogeneity analyses by student subgroups, disciplines, and enrollment patterns.</p>
+  </div>
+
+  <div class="project">
+    <div class="project-header">
+      <h3>Modality, Student Characteristics, and Academic Outcomes: A Study of Transfer Students in Undergraduate Business Administration</h3>
+      <span class="meta">UCI · 2025–Present</span>
+    </div>
+    <p class="role">Graduate Student Researcher · PERI Institute · PIs: Dr. Devin Shanthikumar, Dr. Di Xu, Dr. Sabrina Solanki</p>
+    <p>Evaluate a post-COVID undergraduate business administration program through the lens of course modality; analyze online vs. face-to-face enrollment patterns with a focus on transfer student sorting; developing causal identification strategy to estimate modality effects on student outcomes.</p>
+  </div>
+
+  <div class="project">
+    <div class="project-header">
+      <h3>TimeWise: Time Management and Learning Behaviors in College STEM Courses</h3>
+      <span class="meta">UCI · 2025–Present</span>
+    </div>
+    <p class="role">Research Assistant · PIs: Dr. Di Xu &amp; Dr. Qiujie Li</p>
+    <p>Developing a multi-construct survey instrument measuring time management and procrastination behaviors, adapting items from validated scales; coordinating data collection in introductory STEM courses; contributing to the design of a time management app and behavioral intervention for college students.</p>
+  </div>
+
+  <p class="proj-group-label" style="margin-top:32px;">Past Projects</p>
+
+  <div class="project">
+    <div class="project-header">
+      <h3>NSF-CAREER Grant: Cultivating Environmental Science Data Agency Through Data Storytelling and Issue-Based Learning</h3>
+      <span class="meta">U. Nevada, Reno · 2024</span>
+    </div>
+    <p class="role">Research Assistant · PI: Dr. Ke Li</p>
+    <p>Co-designed K–12 wildfire curricula and teacher professional development materials; conducted literature review, supported IRB development, and contributed to overall research design.</p>
+  </div>
+
+  <div class="project">
+    <div class="project-header">
+      <h3>Novice Programmer Stress: Patterns, Implications, and Multimodal Prediction</h3>
+      <span class="meta">Harvard · 2023–2024</span>
+    </div>
+    <p class="role">Research Assistant · Harvard LIT Lab · Collaborators: Dr. G. Sung &amp; Dr. B. Schneider</p>
+    <p>Analyzed multimodal data (surveys, sensors, video, logs) from Python workshops; coded 1,230 units of qualitative data in ELAN; co-authored ICLS 2025 paper.</p>
+  </div>
+
+  <div class="project">
+    <div class="project-header">
+      <h3>Practice-Based Teacher Preparation: Acknowledging Competence</h3>
+      <span class="meta">Harvard · 2024</span>
+    </div>
+    <p class="role">Research/Teaching Assistant · Supervisors: Dr. H. Hill &amp; Dr. F. Forzani</p>
+    <p>Led RCT intervention with 50+ preservice teachers; coded 120 teaching videos to assess positioning behaviors and training effectiveness.</p>
+  </div>
+
+  <div class="project">
+    <div class="project-header">
+      <h3>Faculty–Student Ratio and Retention in U.S. Higher Education</h3>
+      <span class="meta">Harvard · 2023</span>
+    </div>
+    <p class="role">Project Leader · Supervisor: Dr. Joe McIntyre</p>
+    <p>Cleaned IPEDS 2021 data (296K observations); fitted logistic and hierarchical regression models in R; visualized results with ggplot2.</p>
+  </div>
+
+  <div class="project">
+    <div class="project-header">
+      <h3>Emotional Labor in Doctoral Supervision: A Qualitative Study in Chinese Universities</h3>
+      <span class="meta">ECNU · 2019–2024</span>
+    </div>
+    <p class="role">Project Leader · Supervisor: Dr. Linlin Li</p>
+    <p>Conducted focus-group interviews with 60 supervisors and doctoral students; coded data in NVivo; manuscript in preparation.</p>
+  </div>
+
+  <div class="project">
+    <div class="project-header">
+      <h3>Shanghai Online Teaching &amp; Learning Survey During COVID-19 (SOTL-T)</h3>
+      <span class="meta">ECNU · 2019–2021</span>
+    </div>
+    <p class="role">Project Member · Supervisors: Dr. G. Yan &amp; Dr. J. Guo</p>
+    <p>Administered survey to 11,188 teachers across 76 universities; analyzed data in Stata; presented findings to Shanghai Education Commission.</p>
+  </div>
+</section>
+
+<!-- ══ PUBLICATIONS ══════════════════════════════════════════ -->
+<section id="publications">
+  <h2>Publications &amp; Presentations</h2>
+
+  <div class="pub-group">
+    <h3>Working Papers</h3>
+    <div class="pub-item">
+      Sung, G., Yun, H., <strong>Feng, Y.</strong>, Freitag, J., Chen, S., &amp; Schneider, B.
+      <span class="pub-title">How Novice Programmers Use GenAI in the Wild: Performance, Process, and Affect During Debugging.</span>
+      <span class="pub-status">Under Review · <em>Computers &amp; Education</em></span>
+    </div>
+    <div class="pub-item">
+      <strong>Feng, Y.</strong>, &amp; Li, L.
+      <span class="pub-title">Emotional Labor and Supervisory Relationships in Doctoral Supervision: A Qualitative Study in Chinese Universities.</span>
+      <span class="pub-status">In Preparation</span>
+    </div>
+  </div>
+
+  <div class="pub-group">
+    <h3>Conference Presentations</h3>
+    <div class="pub-item">
+      Yun, H., Sung, G., <strong>Feng, Y.</strong>, &amp; Schneider, B. (2025).
+      <span class="pub-title">Emerging Debugging Strategies of Novice Programmers: The Role of Self-Efficacy.</span>
+      <em>Proceedings of ICLS 2025</em> (pp. 3221–3223).
+    </div>
+    <div class="pub-item">
+      Li L., &amp; <strong>Feng Y.</strong> (2020, Oct.).
+      <span class="pub-title">A case study of supervisory relationships through the perspective of emotional labor.</span>
+      6th Forum on Empirical Education Research. Shanghai, China.
+    </div>
+    <div class="pub-item">
+      <strong>Feng Y.</strong> (2020, Oct.).
+      <span class="pub-title">Explore the phenomenon of university dropouts: A qualitative study of five cases.</span>
+      6th Forum on Empirical Education Research. Shanghai, China.
+    </div>
+  </div>
+
+  <div class="pub-group">
+    <h3>Journal Articles</h3>
+    <div class="pub-item">
+      Li L., &amp; <strong>Feng Y.</strong> (2019).
+      <span class="pub-title">The knowledge genealogy of international Chinese education research: Theme and frontier analysis.</span>
+      <em>Exploring Education Development, 8</em>(3), 17–24.
+    </div>
+    <div class="pub-item">
+      Yang J., &amp; <strong>Feng Y.</strong> (2017).
+      <span class="pub-title">Urban women's emotional self-expression and identity construction.</span>
+      <em>Fujian Tribune, The Humanities &amp; Social Science, 7</em>(3), 96–102.
+    </div>
+  </div>
+</section>
+
+<!-- ══ TEACHING ══════════════════════════════════════════════ -->
+<section id="teaching">
+  <h2>Teaching</h2>
+
+  <div class="teach-item">
+    <h3>EDUS040 — Applied Linear Regression</h3>
+    <p class="teach-meta">Teaching Fellow · Harvard Graduate School of Education · 2024</p>
+    <p>Led weekly lab sections in R/Stata; graded assignments and gave individualized feedback; co-developed course materials with faculty.</p>
+  </div>
+
+  <div class="teach-item">
+    <h3>Education and Self Development &amp; Introduction to Qualitative Research</h3>
+    <p class="teach-meta">Teaching Assistant · East China Normal University · 2019–2021</p>
+  </div>
+</section>
+
+<!-- ══ EDUCATION ═════════════════════════════════════════════ -->
+<section id="cv">
+  <h2>Education</h2>
+
+  <div class="edu-item">
+    <div class="edu-left">
+      <strong>University of California, Irvine</strong><br>
+      Ph.D. in Education Policy and Social Context
+    </div>
+    <div class="edu-right">2025–Present</div>
+  </div>
+
+  <div class="edu-item">
+    <div class="edu-left">
+      <strong>Harvard University</strong><br>
+      M.Ed., Educational Policy and Analysis
+    </div>
+    <div class="edu-right">2023–2024</div>
+  </div>
+
+  <div class="edu-item">
+    <div class="edu-left">
+      <strong>East China Normal University</strong><br>
+      M.Ed., Higher Education
+    </div>
+    <div class="edu-right">2018–2021</div>
+  </div>
+</section>
+
+<footer>
+  <p>Yan Feng · School of Education, University of California, Irvine · <a href="mailto:yanf16@uci.edu">yanf16@uci.edu</a></p>
+</footer>
+
+</body>
 </html>
