@@ -1,0 +1,218 @@
+
+
+
+Yan Feng
+
+
+yanf16@uci.edu  |
+  Irvine, CA 
+92617  |
+  Website
+
+
+EDUCATION
+
+University of California, Irvine
+
+Irvine, CA
+
+Ph.D. in Education Policy and Social Context
+
+Sep. 2025–Present
+
+Harvard University
+
+Cambridge, MA
+
+M.Ed., Educational Policy and Analysis
+
+Aug. 2023–May 2024
+
+East China Normal University (ECNU)
+
+Shanghai, China
+
+M.Ed., Higher Education
+
+Sep. 2018–Jun. 2021
+
+East China University of Science and Technology (ECUST)
+
+Shanghai, China
+
+B.Mgmt., Public Utility Administration
+
+Aug. 2014–Jul. 2018
+
+
+PUBLICATIONS &amp; CONFERENCE PRESENTATIONS
+
+Publications
+
+
+Li L., &amp; Feng Y. (2019). The knowledge genealogy of international Chinese education research: Theme and frontier analysis. Exploring Education Development, 8(3), 17–24.
+
+
+Yang J., &amp; Feng Y. (2017). Urban women's emotional self-expression and identity construction. Fujian Tribune, The Humanities &amp; Social Science, 7(3), 96–102.
+
+Conference Presentations
+
+
+Yun, H., Sung, G., Feng, Y., &amp; Schneider, B. (2025). Emerging Debugging Strategies of Novice Programmers: The Role of Self-Efficacy. Proceedings of ICLS 2025 (pp. 3221–3223).
+
+
+Li L., &amp; Feng Y. (2020, Oct.). A case study of supervisory relationships through the perspective of emotional labor. 6th Forum on Empirical Education Research. Shanghai, China.
+
+
+Feng Y. (2020, Oct.). Explore the phenomenon of university dropouts: A qualitative study of five cases. 6th Forum on Empirical Education Research. Shanghai, China.
+
+Working Paper
+
+
+Feng, Y., &amp; Li, L. Emotional Labor and Supervisory Relationships in Doctoral Supervision: A Qualitative Study in Chinese Universities.
+
+
+Sung, G., Yun, H., Feng, Y., Freitag, J., Chen, S., &amp; Schneider, B. How Novice Programmers Use GenAI in the Wild: Performance, Process, and Affect During Debugging. (Under Review: Computers &amp; Education)
+
+
+RESEARCH &amp; GSR EXPERIENCE
+
+The Effects of Condensed Course Formats on Student Achievement (Ascendium Grant)
+
+UCI, 2025–Present
+
+Graduate Student Researcher  |  PIs: Dr. Di Xu &amp; Dr. XunFei Li
+
+
+
+
+Analyze large-scale administrative data to estimate the causal effects of condensed course scheduling policies on student academic and labor market outcomes in the Virginia Community College System; conduct heterogeneity analyses by student subgroup, discipline, and enrollment pattern.
+
+Modality, Student Characteristics, and Academic Outcomes: A Study of Transfer Students in Undergraduate Business Administration (PERI)
+
+UCI, 2025–Present
+
+Graduate Student Researcher  |  PIs: Dr. Devin Shanthikumar, Dr. Di Xu, Dr. Sabrina Solanki
+
+
+
+
+Conduct a mixed-methods program evaluation of course modality and student outcomes at the Paul Merage School of Business, UC Irvine; analyze online vs. face-to-face enrollment patterns and transfer student sorting; develop causal identification strategy to estimate modality effects on student outcomes.
+
+TimeWise: Time Management and Learning Behaviors in College STEM Courses
+
+UCI, 2025–Present
+
+Research Assistant  |  PIs: Dr. Di Xu &amp; Dr. Qiujie Li
+
+
+
+Employ design-based research methods and AI-driven tools to help instructors and students understand learning behaviors in college STEM courses; develop and validate a multi-construct survey instrument alongside learning analytics data; design and pilot a behavioral intervention targeting time management and procrastination; investigate underlying mechanisms and conditions for generalization.
+
+NSF-CAREER Grant: Cultivating Environmental Science Data Agency Through Data Storytelling and Issue-Based Learning
+
+U. Nevada, Reno, 2024
+
+Research Assistant  |  PI: Dr. Ke Li
+
+
+
+
+Co-designed K–12 wildfire curricula and teacher professional development materials; conducted literature review, supported IRB development, and contributed to overall research design.
+
+Novice Programmer Stress: Patterns, Implications, and Multimodal Prediction
+
+Harvard, 2023–2024
+
+Research Assistant  |  Collaborators: Dr. G. Sung &amp; Dr. B. Schneider
+
+
+
+
+Analyzed multimodal data (surveys, sensors, video, logs) from Python workshops; coded 1,230 units of qualitative data in ELAN; co-authored ICLS 2025 paper.
+
+Practice-Based Teacher Preparation: Acknowledging Competence
+
+Harvard, 2024
+
+Research/Teaching Assistant  |  Supervisors: Dr. H. Hill &amp; Dr. F. Forzani
+
+
+
+
+Led RCT intervention with 50+ preservice teachers; coded 120 teaching videos to assess positioning behaviors and training effectiveness.
+
+Faculty–Student Ratio and Retention in U.S. Higher Education
+
+Harvard, 2023
+
+Project Leader  |  Supervisor: Dr. Joe McIntyre
+
+
+
+
+Cleaned IPEDS 2021 data (296K obs.); fitted logistic and hierarchical regression models in R; visualized results with ggplot2.
+
+Emotional Labor in Doctoral Supervision (Qualitative Study)
+
+ECNU, 2019–2024
+
+Project Leader  |  Supervisor: Dr. Linlin Li
+
+
+
+
+Conducted focus-group interviews with 60 supervisors and doctoral students; coded data in NVivo; manuscript in preparation.
+
+Shanghai Online Teaching Survey During COVID-19 (SOTL-T)
+
+ECNU, 2019–2021
+
+Project Member  |  Supervisors: Dr. G. Yan &amp; Dr. J. Guo
+
+
+
+
+Administered survey to 11,188 teachers across 76 universities; analyzed data in Stata; presented findings to Shanghai Education Commission.
+
+
+TEACHING EXPERIENCE
+
+EDUS040 Applied Linear Regression, HGSE
+
+Harvard, 2024
+
+Teaching Fellow
+
+
+
+
+Led weekly lab sections in R/Stata; graded student statistic projects and gave individualized feedback.
+
+Education and Self Development; Intro to Qualitative Research
+
+ECNU, 2019–2021
+
+Teaching Assistant &amp; Seminar Leader
+
+
+
+
+
+
+
+HONORS &amp; AWARDS
+
+
+Excellent Dissertation, ECNU (Top 49 / 2,000+ submissions), 2021
+
+
+Publishing Wisdom Scholarship (Top 100 / 8,712 applicants), 2019
+
+
+SKILLS
+
+Software: R, Stata, SPSS, NVivo, ELAN, MAXQDA, 
+CiteSpace
+, CODAP, Python (basic), Photoshop (basic)
+

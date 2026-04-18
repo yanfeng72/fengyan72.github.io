@@ -1,264 +1,2359 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yan Feng</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yan Feng — Education Policy Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "accentHue": 160,
+  "density": "dense",
+  "dark": false,
+  "serif": true
+}/*EDITMODE-END*/;
+</script>
+<style>
+  :root {
+    --paper: oklch(0.995 0.001 240);
+    --paper-2: oklch(0.975 0.002 240);
+    --ink: oklch(0.18 0.005 250);
+    --ink-2: oklch(0.38 0.006 250);
+    --ink-3: oklch(0.62 0.006 250);
+    --rule: oklch(0.90 0.004 240);
+    --rule-2: oklch(0.95 0.003 240);
+    --accent: oklch(0.56 0.13 35);
+    --accent-soft: oklch(0.56 0.13 35 / 0.08);
+    --serif: "Newsreader", "Iowan Old Style", "Palatino", Georgia, serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --pad-y: clamp(72px, 9vw, 140px);
+    --gap: clamp(20px, 2.4vw, 34px);
+  }
+  [data-theme="dark"] {
+    --paper: oklch(0.16 0.008 60);
+    --paper-2: oklch(0.20 0.008 60);
+    --ink: oklch(0.94 0.006 80);
+    --ink-2: oklch(0.78 0.008 70);
+    --ink-3: oklch(0.58 0.008 70);
+    --rule: oklch(0.30 0.01 60);
+    --rule-2: oklch(0.24 0.01 60);
+    --accent: oklch(0.72 0.12 35);
+    --accent-soft: oklch(0.72 0.12 35 / 0.12);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  /* Custom cursor */
+  @media (hover: hover) and (pointer: fine) {
+    .cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      width: 26px; height: 26px;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      opacity: 0;
+      color: oklch(0.45 0.07 130);
+      transition: width .35s cubic-bezier(0.2,0.75,0.2,1),
+                  height .35s cubic-bezier(0.2,0.75,0.2,1),
+                  opacity .3s ease,
+                  color .25s ease;
+    }
+    .cursor-ring svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .cursor-ring svg path { fill: currentColor; transition: transform .35s cubic-bezier(0.2,0.75,0.2,1); transform-origin: center; }
+    .cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 6px; height: 6px;
+      background: oklch(0.45 0.07 130);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 10000;
+      opacity: 0;
+      transition: opacity .3s ease, width .25s ease, height .25s ease, background-color .25s ease;
+    }
+    .cursor-ring.active { opacity: 0.8; }
+    .cursor-dot.active { opacity: 1; }
+    .cursor-ring.hover {
+      width: 42px; height: 42px;
+    }
+    .cursor-ring.hover svg path {
+      transform: scaleX(1.08) scaleY(0.92);
+    }
+    .cursor-dot.hover { width: 10px; height: 10px; }
+    .cursor-ring.pressed { width: 18px; height: 18px; }
+  }
+  body {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "onum";
+    transition: background .35s ease, color .35s ease;
+  }
+  body.sans {
+    font-family: "Inter", var(--sans);
+    font-feature-settings: "kern", "liga", "ss01";
+  }
+  ::selection { background: var(--accent-soft); color: var(--ink); }
+
+  /* Layout shell */
+  .shell {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 4vw, 64px);
+    gap: clamp(32px, 5vw, 80px);
+  }
+  @media (max-width: 900px) {
+    .shell { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  /* Side nav */
+  aside.nav {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    padding: var(--pad-y) 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  @media (max-width: 900px) {
+    aside.nav {
+      position: static;
+      height: auto;
+      padding: 40px 0 0;
+      gap: 24px;
+    }
+  }
+  .mark {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  .mark em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .mark .sub {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: 10px;
+    font-weight: 400;
+  }
+  nav.toc {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  nav.toc a {
+    color: var(--ink-3);
+    text-decoration: none;
+    padding: 7px 0;
+    display: grid;
+    grid-template-columns: 28px 1fr 12px;
+    align-items: center;
+    transition: color .35s ease, padding-left .5s cubic-bezier(0.2,0.75,0.2,1);
+    border-top: 1px solid var(--rule-2);
+    position: relative;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: tocIn .7s cubic-bezier(0.2, 0.75, 0.2, 1) both;
+  }
+  nav.toc a::before {
+    content: "";
+    position: absolute;
+    left: -10px; top: 50%;
+    width: 6px; height: 1px;
+    background: var(--accent);
+    transform: translateY(-50%) scaleX(0);
+    transform-origin: left;
+    transition: transform .5s cubic-bezier(0.2, 0.75, 0.2, 1);
+  }
+  nav.toc a:hover { color: var(--ink); padding-left: 6px; }
+  nav.toc a:hover::before { transform: translateY(-50%) scaleX(1); }
+  nav.toc a.active { color: var(--ink); padding-left: 6px; }
+  nav.toc a.active::before { transform: translateY(-50%) scaleX(1); width: 12px; }
+  @keyframes tocIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  nav.toc a:nth-child(1){animation-delay: 0.8s}
+  nav.toc a:nth-child(2){animation-delay: 0.92s}
+  nav.toc a:nth-child(3){animation-delay: 1.04s}
+  nav.toc a:nth-child(4){animation-delay: 1.16s}
+  nav.toc a:nth-child(5){animation-delay: 1.28s}
+  nav.toc a:nth-child(6){animation-delay: 1.40s}
+  nav.toc a:nth-child(7){animation-delay: 1.52s}
+  nav.toc a:nth-child(8){animation-delay: 1.64s}
+  nav.toc a:first-child { border-top: 1px solid var(--rule); }
+  nav.toc a:last-child { border-bottom: 1px solid var(--rule-2); }
+  nav.toc a .num { color: var(--ink-3); }
+  nav.toc a:hover { color: var(--ink); }
+  nav.toc a.active {
+    color: var(--ink);
+  }
+  nav.toc a.active .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); justify-self: end;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.35); }
+  }
+  nav.toc a .dot { justify-self: end; }
+
+  .status {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.7;
+    color: var(--ink-3);
+    letter-spacing: 0.02em;
+    margin-top: auto;
+  }
+  .status .live {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--ink-2);
+  }
+  .status .live::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* Main */
+  main {
+    padding: 0 0 120px;
+    min-width: 0;
+  }
+  main > section:not(.hero) {
+    padding-top: clamp(140px, 16vw, 220px);
+  }
+  section {
+    padding-top: clamp(200px, 22vw, 320px);
+    scroll-margin-top: 40px;
+  }
+  section:first-child { padding-top: 0; }
+
+  /* Floating pager — section-to-section scroll */
+  .pager {
+    position: fixed;
+    right: clamp(20px, 2.2vw, 36px);
+    bottom: clamp(20px, 2.2vw, 32px);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px 8px 14px;
+    background: oklch(from var(--paper) l c h / 0.92);
+    backdrop-filter: blur(10px) saturate(1.1);
+    -webkit-backdrop-filter: blur(10px) saturate(1.1);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    box-shadow: 0 4px 24px oklch(0 0 0 / 0.06);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: pagerIn .7s cubic-bezier(0.2,0.75,0.2,1) 1.8s forwards;
+    user-select: none;
+  }
+  @keyframes pagerIn { to { opacity: 1; transform: translateY(0); } }
+  .pager .count { min-width: 3.8em; text-align: center; }
+  .pager .count strong { color: var(--ink); font-weight: 500; }
+  .pager button {
+    all: unset;
+    width: 28px; height: 28px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--ink-2);
+    transition: color .2s, background .2s, transform .2s;
+  }
+  .pager button:hover { color: var(--ink); background: oklch(from var(--ink) l c h / 0.05); }
+  .pager button:active { transform: scale(0.92); }
+  .pager button:disabled { opacity: 0.25; cursor: default; }
+  .pager button:disabled:hover { background: transparent; color: var(--ink-2); }
+  .pager svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  @media (max-width: 900px) { .pager { display: none; } }
+
+  .sec-label {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    gap: 28px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: clamp(56px, 7vw, 90px);
+  }
+  .sec-label > span:first-child {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .sec-label .rule { height: 1px; }
+  .sec-label .meta {
+    color: var(--ink-3);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 300;
+  }
+
+  /* Hero — full-viewport academic gallery cover */
+  .hero {
+    text-align: center;
+    min-height: 100vh;
+    padding-top: 48px;
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-eyebrow {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    padding-bottom: 0;
+    border-bottom: none;
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .hero-eyebrow .dot { color: var(--rule); }
+  .hero-eyebrow .vol { color: var(--ink-3); }
+  .hero-eyebrow-r { color: var(--ink-3); }
+
+  .hero-cover {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(28px, 3.5vh, 44px);
+    padding: 0;
+  }
+  .portrait-stamp {
+    width: clamp(88px, 9vh, 120px);
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--paper-2);
+    margin: 0 auto;
+    cursor: default;
+  }
+  .portrait-stamp img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 52% 28%;
+    filter: saturate(0.85) contrast(1.02) grayscale(0.15);
+    display: block;
+    transition: filter .6s ease, transform .8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .portrait-stamp:hover img {
+    filter: saturate(1) contrast(1.02) grayscale(0);
+    transform: scale(1.04);
+  }
+
+  .hero-name h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(56px, 8vw, 118px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .hero-name h1 em { font-style: italic; color: var(--ink); font-weight: 300; }
+
+  /* Flying swallow across the tagline */
+  .hero-tagline { position: relative; }
+  .tagline-swallow {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 26px; height: 26px;
+    color: oklch(0.45 0.07 130);
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(-60px, 0, 0);
+  }
+  .tagline-swallow svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .tagline-swallow svg path { fill: currentColor; transform-origin: center; animation: wingFlap 0.42s ease-in-out infinite; }
+  .hero-tagline.flight .tagline-swallow {
+    animation: swallowFlyTag 3.6s cubic-bezier(0.4, 0, 0.6, 1) 0.4s forwards;
+  }
+  @keyframes swallowFlyTag {
+    0%   { opacity: 0; transform: translate3d(-60px, 25px, 0) rotate(-6deg) scale(0.65); }
+    12%  { opacity: 1; }
+    30%  { transform: translate3d(calc(30vw - 60px), -25px, 0) rotate(-3deg) scale(0.82); }
+    55%  { transform: translate3d(calc(55vw - 60px), 10px, 0) rotate(2deg) scale(0.92); }
+    78%  { transform: translate3d(calc(78vw - 60px), -15px, 0) rotate(-2deg) scale(0.85); }
+    92%  { opacity: 1; }
+    100% { opacity: 0; transform: translate3d(calc(100vw - 40px), 18px, 0) rotate(4deg) scale(0.7); }
+  }
+
+  /* Flying swallow across the name */
+  .hero-name { position: relative; }
+  .name-swallow {
+    position: absolute;
+    top: 38%;
+    left: 0;
+    width: 34px; height: 34px;
+    color: oklch(0.45 0.07 130);
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(-80px, 0, 0);
+  }
+  .name-swallow svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .name-swallow svg path { fill: currentColor; transform-origin: center; animation: wingFlap 0.42s ease-in-out infinite; }
+  .hero-name.flight .name-swallow {
+    animation: swallowFly 3.4s cubic-bezier(0.4, 0, 0.6, 1) 0.5s forwards;
+  }
+  @keyframes swallowFly {
+    0%   { opacity: 0; transform: translate3d(-80px, 40px, 0) rotate(-8deg) scale(0.6); }
+    10%  { opacity: 1; }
+    25%  { transform: translate3d(calc(25vw - 80px), -30px, 0) rotate(-4deg) scale(0.85); }
+    50%  { transform: translate3d(calc(50vw - 80px), 10px, 0) rotate(2deg) scale(1); }
+    75%  { transform: translate3d(calc(75vw - 80px), -20px, 0) rotate(-2deg) scale(0.9); }
+    90%  { opacity: 1; }
+    100% { opacity: 0; transform: translate3d(calc(100vw - 40px), 20px, 0) rotate(4deg) scale(0.75); }
+  }
+  @keyframes wingFlap {
+    0%, 100% { transform: scaleY(1); }
+    50%      { transform: scaleY(0.82); }
+  }
+
+
+  .hero-role {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 300;
+    font-size: clamp(13px, 0.98vw, 15px);
+    color: var(--ink-2);
+    line-height: 1.65;
+    letter-spacing: -0.003em;
+    max-width: 48ch;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .hero-role .rl {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+    transition: opacity .9s cubic-bezier(0.2, 0.75, 0.2, 1),
+                transform .9s cubic-bezier(0.2, 0.75, 0.2, 1),
+                filter .9s cubic-bezier(0.2, 0.75, 0.2, 1);
+  }
+  .hero-role .rl::before {
+    content: "";
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translateY(-3px) scale(0);
+    transition: transform .6s cubic-bezier(0.2, 1.3, 0.3, 1);
+  }
+  .hero-role .rl.in { opacity: 1; transform: translateY(0); filter: blur(0); }
+  .hero-role .rl.in::before { transform: translateY(-3px) scale(1); transition-delay: .25s; }
+  .hero-role .rl-1,
+  .hero-role .rl-2,
+  .hero-role .rl-3 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: normal;
+    font-size: clamp(13px, 0.98vw, 15px);
+    letter-spacing: -0.003em;
+    color: var(--ink-2);
+  }
+
+  .hero-rule {
+    width: 1px;
+    height: clamp(32px, 4vh, 56px);
+    background: var(--rule);
+    margin: clamp(20px, 2.4vh, 32px) auto clamp(18px, 2.2vh, 28px);
+  }
+
+  .hero-tagline {
+    font-family: "EB Garamond", "Newsreader", Georgia, serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(22px, 2.6vw, 36px);
+    line-height: 1.3;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 0 auto;
+    max-width: 26ch;
+    text-wrap: balance;
+    text-align: center;
+  }
+  .hero-quote-mark {
+    font-family: var(--serif);
+    font-size: 1em;
+    color: var(--accent);
+    font-style: italic;
+  }
+  .hero-attrib {
+    display: block;
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: clamp(24px, 2.6vw, 36px);
+    font-weight: 400;
+  }
+
+  .hero-contact-r {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: clamp(90px, 12vw, 140px) auto 0;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .hero-contact-r a {
+    color: var(--ink-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 3px;
+    transition: border-color .2s, color .2s;
+  }
+  .hero-contact-r a:hover { color: var(--accent); border-color: var(--accent); }
+  .hero .lede {
+    margin-top: 48px;
+    max-width: 68ch;
+  }
+  .hero .lede p {
+    font-size: clamp(18px, 1.35vw, 21px);
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0 0 20px;
+    font-weight: 400;
+    text-wrap: pretty;
+  }
+  .hero .lede p em { color: var(--ink); font-style: italic; }
+
+  .focus-tags {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .focus-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-right: 10px;
+    width: 100%;
+    margin-bottom: 4px;
+  }
+  .tag-chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    padding: 6px 11px;
+    border: 1px solid oklch(0.72 0.13 155 / 0.4);
+    background: transparent;
+    transition: border-color .2s, color .2s, background .2s;
+    white-space: nowrap;
+  }
+  .tag-chip:hover {
+    color: var(--ink);
+    border-color: oklch(0.72 0.13 155 / 0.75);
+    background: oklch(0.82 0.11 155 / 0.08);
+  }
+  .contact-line {
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  .contact-line a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: border-color .2s, color .2s;
+  }
+  .contact-line a:hover { color: var(--accent); border-color: var(--accent); }
+  .contact-line .sep { color: var(--ink-3); }
+  .hero .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hero .meta .row { display: flex; gap: 14px; align-items: baseline; }
+  .hero .meta .row .k { color: var(--ink-3); min-width: 68px; }
+  .hero .meta .row .v { color: var(--ink); letter-spacing: 0.04em; }
+  .hero .meta a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 1px; transition: border-color .2s, color .2s; }
+  .hero .meta a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .hero .portrait { display: none; }
+
+  /* About */
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 90px);
+  }
+  @media (max-width: 780px) { .about { grid-template-columns: 1fr; } }
+  .about p {
+    font-family: "EB Garamond", "Newsreader", Georgia, serif;
+    font-size: clamp(21px, 1.7vw, 26px);
+    line-height: 1.5;
+    margin: 0 0 22px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    text-wrap: pretty;
+  }
+  .about p strong {
+    font-weight: 400;
+    color: var(--ink);
+    background-image: linear-gradient(to right, oklch(0.82 0.11 155 / 0.38), oklch(0.82 0.11 155 / 0.38));
+    background-size: 100% 0.15em;
+    background-repeat: no-repeat;
+    background-position: 0 90%;
+    padding: 0 0.05em;
+    text-decoration: none;
+  }
+  .about .facts {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-2);
+    line-height: 1.9;
+    padding-top: 8px;
+  }
+  .about .facts .k {
+    text-transform: uppercase;
+    color: var(--ink);
+    letter-spacing: 0.14em;
+    font-size: 10px;
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 2px;
+    font-weight: 600;
+  }
+  .about .facts .k:first-child { margin-top: 0; }
+
+  /* Education */
+  .edu { display: grid; gap: 0; }
+  .edu-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule-2);
+    transition: background .25s ease;
+  }
+  .edu-row:last-child { border-bottom: 1px solid var(--rule-2); }
+  .edu-row:hover { background: var(--paper-2); }
+  .edu-row .year {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+  }
+  .edu-row .degree {
+    font-size: 19px;
+    line-height: 1.35;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .edu-row .degree em {
+    font-style: italic;
+    color: var(--ink-2);
+    font-weight: 300;
+    display: block;
+    font-size: 15px;
+    margin-top: 2px;
+  }
+  .edu-row .inst {
+    font-size: 17px;
+    color: var(--ink-2);
+    font-style: italic;
+    font-weight: 300;
+  }
+  .edu-row .inst span { display: block; font-style: normal; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-top: 4px; }
+  .edu-row .loc {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    text-align: right;
+    white-space: nowrap;
+  }
+  @media (max-width: 780px) {
+    .edu-row { grid-template-columns: 1fr; gap: 6px; }
+    .edu-row .loc { text-align: left; }
+  }
+
+  /* Research */
+  .research-grid { display: grid; gap: 0; }
+  .project {
+    border-top: 1px solid var(--rule-2);
+    padding: 28px 0;
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    gap: 28px;
+    align-items: start;
+    cursor: pointer;
+    transition: background .25s ease, padding .25s ease;
+  }
+  .project:last-child { border-bottom: 1px solid var(--rule-2); }
+  .project:hover { background: var(--paper-2); }
+  .project.open { background: var(--paper-2); padding: 36px 0; }
+  .project > * { padding-left: 16px; padding-right: 16px; }
+  .project > *:first-child { padding-left: 0; }
+  .project > *:last-child { padding-right: 0; }
+  .project .when {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    line-height: 1.6;
+  }
+  .project .when span {
+    display: block; color: var(--ink-2); margin-top: 4px;
+  }
+  .project .body { min-width: 0; }
+  .project h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(20px, 1.7vw, 26px);
+    letter-spacing: -0.012em;
+    line-height: 1.25;
+    margin: 0 0 10px;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .project .role {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    margin: 0;
+  }
+  .project .role em {
+    color: var(--ink-3); font-style: normal;
+    text-transform: uppercase; letter-spacing: 0.1em; font-size: 10px;
+    margin-right: 6px;
+  }
+  .project .desc {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .4s ease;
+    margin-top: 0;
+  }
+  .project.open .desc { grid-template-rows: 1fr; margin-top: 18px; }
+  .project .desc > div {
+    overflow: hidden;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    font-weight: 300;
+    max-width: 68ch;
+    text-wrap: pretty;
+  }
+  .project .toggle {
+    font-family: var(--mono);
+    font-size: 22px;
+    color: var(--ink-3);
+    width: 28px;
+    text-align: center;
+    transition: transform .3s ease, color .2s;
+    line-height: 1;
+    align-self: start;
+    margin-top: 4px;
+  }
+  .project.open .toggle { transform: rotate(45deg); color: var(--accent); }
+  @media (max-width: 780px) {
+    .project { grid-template-columns: 1fr auto; gap: 10px; }
+    .project .when { grid-column: 1 / -1; }
+  }
+
+  /* Publications */
+  .pub-filters {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--rule);
+    width: fit-content;
+  }
+  .pub-filters button {
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--rule);
+    color: var(--ink-3);
+    padding: 9px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    transition: color .2s, background .2s;
+  }
+  .pub-filters button:last-child { border-right: none; }
+  .pub-filters button:hover { color: var(--ink); }
+  .pub-filters button.active { color: var(--paper); background: var(--ink); }
+
+  .pub-list { display: grid; gap: 0; }
+  .pub {
+    display: grid;
+    grid-template-columns: 60px 100px 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-top: 1px solid var(--rule-2);
+    align-items: baseline;
+    transition: background .25s, opacity .25s;
+  }
+  .pub:last-child { border-bottom: 1px solid var(--rule-2); }
+  .pub:hover { background: var(--paper-2); }
+  .pub.hidden { display: none; }
+  .pub .idx {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+  }
+  .pub .year {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-2);
+  }
+  .pub .ref {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 400;
+    text-wrap: pretty;
+  }
+  .pub .ref em { font-style: italic; color: var(--ink-2); }
+  .pub .ref strong { font-weight: 500; color: var(--ink); background: var(--accent-soft); padding: 0 3px; }
+  .pub .ref .venue {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .pub .ref .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border: 1px solid var(--rule);
+    color: var(--ink-3);
+    margin-right: 6px;
+    vertical-align: 2px;
+  }
+  @media (max-width: 780px) {
+    .pub { grid-template-columns: 40px 1fr; }
+    .pub .year { grid-column: 2; order: -1; }
+  }
+
+  /* Teaching + Awards two-col */
+  .twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+  }
+  @media (max-width: 780px) { .twocol { grid-template-columns: 1fr; } }
+  .twocol h2 {
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .twocol .item {
+    padding: 18px 0;
+    border-top: 1px solid var(--rule-2);
+  }
+  .twocol .item:first-of-type { border-top: none; padding-top: 2px; }
+  .twocol .item .t {
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .twocol .item .t em { font-style: italic; color: var(--ink-2); font-weight: 300; }
+  .twocol .item .s {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--rule-2);
+    border: 1px solid var(--rule-2);
+  }
+  .skill {
+    background: var(--paper);
+    padding: 22px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100px;
+    transition: background .2s;
+  }
+  .skill:hover { background: var(--paper-2); }
+  .skill .lvl {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .skill .bar {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    position: relative;
+  }
+  .skill .bar::after {
+    content: "";
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--accent);
+    width: var(--w, 70%);
+  }
+
+  /* Footer / contact */
+  footer {
+    margin-top: 120px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+  footer .grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 780px) { footer .grid { grid-template-columns: 1fr; } }
+  footer h3 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 5vw, 64px);
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin: 0;
+  }
+  footer h3 em { font-style: italic; color: var(--accent); }
+  footer .col-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 12px;
+  }
+  footer a {
+    color: var(--ink);
+    text-decoration: none;
+    display: block;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s;
+    font-size: 16px;
+  }
+  footer a:hover { color: var(--accent); }
+  footer .fine {
+    margin-top: 48px;
+    padding: 20px 0;
+    border-top: 1px solid var(--rule-2);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* Theme toggle — bottom right */
+  .theme-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 50;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .theme-toggle:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* Page navigation — top right */
+  .page-nav {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .page-nav button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink-2);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1;
+    transition: background .2s, color .2s, border-color .2s, transform .2s;
+  }
+  .page-nav button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); transform: translateY(-1px); }
+  .page-nav button:disabled { opacity: 0.3; cursor: default; transform: none; background: var(--paper); color: var(--ink-3); border-color: var(--rule-2); }
+  .pn-count {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    text-align: center;
+    padding: 2px 0;
+  }
+
+  /* Tweaks panel */
+  #tweaks-panel {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 280px;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    padding: 18px 20px;
+    z-index: 100;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    box-shadow: 0 20px 60px -20px oklch(0.2 0.01 60 / 0.3);
+    display: none;
+  }
+  #tweaks-panel.on { display: block; }
+  #tweaks-panel h4 {
+    margin: 0 0 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; justify-content: space-between;
+  }
+  #tweaks-panel h4 span { color: var(--accent); }
+  #tweaks-panel .field { margin-bottom: 12px; }
+  #tweaks-panel label {
+    display: block;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 6px;
+  }
+  #tweaks-panel input[type=range] { width: 100%; accent-color: var(--accent); }
+  #tweaks-panel .seg {
+    display: flex;
+    border: 1px solid var(--rule);
+  }
+  #tweaks-panel .seg button {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--rule);
+    padding: 7px 8px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  #tweaks-panel .seg button:last-child { border-right: none; }
+  #tweaks-panel .seg button.active { background: var(--ink); color: var(--paper); }
+  #tweaks-panel .accent-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  #tweaks-panel .sw {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    transition: transform .15s;
+  }
+  #tweaks-panel .sw:hover { transform: scale(1.15); }
+  #tweaks-panel .sw.active { box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--ink); }
+
+  /* Guestbook */
+  #guestbook { padding-top: clamp(60px, 8vw, 100px); }
+  .guestbook {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(36px, 5vw, 72px);
+    align-items: start;
+  }
+  @media (max-width: 780px) { .guestbook { grid-template-columns: 1fr; } }
+  .gb-intro p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(20px, 1.8vw, 26px);
+    line-height: 1.45;
+    color: var(--ink-2);
+    letter-spacing: -0.012em;
+    margin: 0;
+    text-wrap: pretty;
+    max-width: 28ch;
+  }
+  .gb-form { display: flex; flex-direction: column; gap: 22px; }
+  .gb-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  @media (max-width: 560px) { .gb-row-2 { grid-template-columns: 1fr; } }
+  .gb-field { display: flex; flex-direction: column; gap: 8px; }
+  .gb-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+  .gb-label em {
+    font-family: var(--serif);
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 12px;
+    color: var(--ink-3);
+    font-weight: 300;
+    margin-left: 6px;
+  }
+  .gb-field input, .gb-field textarea {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    padding: 6px 0 10px;
+    outline: none;
+    transition: border-color .2s;
+    resize: vertical;
+    width: 100%;
+  }
+  .gb-field textarea { min-height: 120px; }
+  .gb-field input:focus, .gb-field textarea:focus {
+    border-bottom-color: var(--accent);
+  }
+  .gb-submit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .gb-submit {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    padding: 14px 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--ink);
+    transition: gap .2s, color .2s, border-color .2s;
+  }
+  .gb-submit:hover { gap: 20px; color: var(--accent); border-bottom-color: var(--accent); }
+  .gb-submit:disabled { opacity: 0.5; cursor: wait; }
+  .gb-submit-arrow { font-family: var(--serif); font-size: 16px; }
+  .gb-status {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    min-height: 14px;
+  }
+  .gb-status.success { color: var(--accent); }
+  .gb-status.error { color: oklch(0.58 0.16 25); }
+
+  /* Density variants */
+
+  /* === ANIMATIONS === */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeScaleIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes drawLine {
+    from { height: 0; }
+    to { height: 100%; }
+  }
+  @keyframes blurIn {
+    from { opacity: 0; filter: blur(8px); transform: translateY(30px); letter-spacing: 0.05em; }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); letter-spacing: -0.035em; }
+  }
+  @keyframes blurInTag {
+    from { opacity: 0; filter: blur(6px); transform: translateY(20px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-eyebrow,
+    .hero .portrait-stamp,
+    .hero-name h1,
+    .hero-role,
+    .hero-rule,
+    .hero-tagline,
+    .hero-contact-r,
+    .reveal,
+    .reveal-child > * {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  /* Hero entrance — staggered */
+  .hero-eyebrow,
+  .hero .portrait-stamp,
+  .hero-rule,
+  .hero-contact-r {
+    animation: fadeUp 1.2s cubic-bezier(0.2, 0.75, 0.2, 1) both;
+  }
+  .hero-name h1 {
+    animation: blurIn 1.6s cubic-bezier(0.2, 0.75, 0.2, 1) both;
+  }
+  .hero .portrait-stamp {
+    animation: fadeScaleIn 1.2s cubic-bezier(0.2, 0.75, 0.2, 1) both;
+  }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero .portrait-stamp { animation-delay: 0.3s; }
+  .hero-name h1 { animation-delay: 0.55s; }
+  .hero-rule { animation-delay: 1.9s; }
+  .hero-contact-r { animation-delay: 3.1s; }
+
+  /* Scroll reveals */
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(4px);
+    transition: opacity 1.2s cubic-bezier(0.2, 0.75, 0.2, 1),
+                transform 1.2s cubic-bezier(0.2, 0.75, 0.2, 1),
+                filter 1.2s cubic-bezier(0.2, 0.75, 0.2, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+  .reveal-child > * {
+    opacity: 0;
+    transform: translateY(32px);
+    filter: blur(3px);
+    transition: opacity .95s cubic-bezier(0.2, 0.75, 0.2, 1),
+                transform .95s cubic-bezier(0.2, 0.75, 0.2, 1),
+                filter .95s cubic-bezier(0.2, 0.75, 0.2, 1);
+  }
+  .reveal-child.in > * { opacity: 1; transform: translateY(0); filter: blur(0); }
+  .reveal-child.in > *:nth-child(1) { transition-delay: 0s; }
+  .reveal-child.in > *:nth-child(2) { transition-delay: 0.12s; }
+  .reveal-child.in > *:nth-child(3) { transition-delay: 0.24s; }
+  .reveal-child.in > *:nth-child(4) { transition-delay: 0.36s; }
+  .reveal-child.in > *:nth-child(5) { transition-delay: 0.48s; }
+  .reveal-child.in > *:nth-child(6) { transition-delay: 0.60s; }
+  .reveal-child.in > *:nth-child(n+7) { transition-delay: 0.72s; }
+
+  /* Section-label hairline sweeps in */
+  .sec-label { position: relative; }
+  .sec-label::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 4s linear 0.4s;
+  }
+  section.in-view .sec-label::after { transform: scaleX(1); }
+
+  /* Tagline typewriter-style word reveal */
+  .hero-tagline .w {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    will-change: opacity, transform;
+    transition: opacity .65s cubic-bezier(0.2, 0.75, 0.2, 1),
+                transform .65s cubic-bezier(0.2, 0.75, 0.2, 1);
+  }
+  .hero-tagline.in .w { opacity: 1; transform: translateY(0); }
+
+  /* Chip reveal for about tags */
+  .focus-tags .tag-chip {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .7s cubic-bezier(0.2, 0.75, 0.2, 1), transform .7s cubic-bezier(0.2, 0.75, 0.2, 1);
+  }
+  section.in-view .focus-tags .tag-chip { opacity: 1; transform: translateY(0); }
+  section.in-view .focus-tags .tag-chip:nth-child(1){transition-delay:.5s}
+  section.in-view .focus-tags .tag-chip:nth-child(2){transition-delay:.58s}
+  section.in-view .focus-tags .tag-chip:nth-child(3){transition-delay:.66s}
+  section.in-view .focus-tags .tag-chip:nth-child(4){transition-delay:.74s}
+  section.in-view .focus-tags .tag-chip:nth-child(5){transition-delay:.82s}
+  section.in-view .focus-tags .tag-chip:nth-child(6){transition-delay:.9s}
+  section.in-view .focus-tags .tag-chip:nth-child(7){transition-delay:.98s}
+  section.in-view .focus-tags .tag-chip:nth-child(8){transition-delay:1.06s}
+  body.dense section { padding-top: clamp(40px, 5vw, 70px); }
+  body.dense .edu-row, body.dense .project, body.dense .pub { padding-top: 14px; padding-bottom: 14px; }
+  body.dense .hero .portrait { display: none; }
+</style>
 </head>
 <body>
-<div class="page">
 
-<!-- ══ SIDEBAR ══════════════════════════════════════════════ -->
-<aside class="sidebar">
-  <img src="assets/photo.png" alt="Yan Feng">
+<button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">☾</button>
 
-  <h1>Yan Feng</h1>
-  <p class="affil">
-    Ph.D. Student in Education Policy<br>
-    and Social Context<br><br>
-    School of Education<br>
-    University of California, Irvine
-  </p>
-
-  <div class="sidebar-links">
-    <a href="mailto:yanf16@uci.edu">yanf16@uci.edu</a>
-    <a href="#">Curriculum Vitae</a>
-  </div>
-
-  <hr class="sidebar-divider">
-
-  <nav>
-    <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#education">Education</a>
-  </nav>
-</aside>
-
-<!-- ══ MAIN ════════════════════════════════════════════════ -->
-<div class="main">
-
-  <!-- Bio -->
-  <div class="intro">
-    <p>
-      My research sits at the intersection of higher education policy and teaching and learning,
-      with a focus on how decisions about course format, scheduling, and delivery modality shape
-      student learning outcomes. I work primarily with large-scale administrative data and apply
-      causal inference methods to questions that bear directly on institutional policy and student
-      success. I have also collaborated with researchers in learning sciences and educational
-      psychology, drawing on surveys, designed interventions, multimodal data, and interviews to
-      examine how instructional and contextual factors shape student learning and development.
-      My current work also examines how technology shapes teaching, learning, and student outcomes,
-      including the design of AI-driven behavioral interventions to support college student success.
-    </p>
-  </div>
-
-  <!-- Research -->
-  <section id="research">
-    <h2>Research</h2>
-
-    <div class="interests">
-      <span class="tag">Higher Education Policy</span>
-      <span class="tag">Teaching &amp; Learning</span>
-      <span class="tag">Instructional Design</span>
-      <span class="tag">Online Education</span>
-      <span class="tag">Causal Inference</span>
-      <span class="tag">Community Colleges</span>
-      <span class="tag">AI in Education</span>
-      <span class="tag">Transfer Students</span>
-    </div>
-
-    <p class="proj-group-label">Current Projects</p>
-
-    <div class="project">
-      <div class="project-header">
-        <h3>The Effects of Condensed Course Formats on Student Achievement</h3>
-        <span class="meta">UCI · 2025–Present</span>
-      </div>
-      <p class="role">Graduate Student Researcher · Ascendium Grant · PIs: Dr. Di Xu &amp; Dr. XunFei Li</p>
-      <p>Analyze large-scale administrative data from the Virginia Community College System (VCCS) to estimate the causal effects of condensed course formats on students' academic and labor market outcomes using quasi-experimental methods, including two-way fixed effects and IV approaches. Conduct heterogeneity analyses by student subgroups, disciplines, and enrollment patterns.</p>
-    </div>
-
-    <div class="project">
-      <div class="project-header">
-        <h3>Modality, Student Characteristics, and Academic Outcomes: A Study of Transfer Students in Undergraduate Business Administration</h3>
-        <span class="meta">UCI · 2025–Present</span>
-      </div>
-      <p class="role">Graduate Student Researcher · PERI Institute · PIs: Dr. Devin Shanthikumar, Dr. Di Xu, Dr. Sabrina Solanki</p>
-      <p>Evaluate a post-COVID undergraduate business administration program through the lens of course modality; analyze online vs. face-to-face enrollment patterns with a focus on transfer student sorting; developing causal identification strategy to estimate modality effects on student outcomes.</p>
-    </div>
-
-    <div class="project">
-      <div class="project-header">
-        <h3>TimeWise: Time Management and Learning Behaviors in College STEM Courses</h3>
-        <span class="meta">UCI · 2025–Present</span>
-      </div>
-      <p class="role">Research Assistant · PIs: Dr. Di Xu &amp; Dr. Qiujie Li</p>
-      <p>Developing a multi-construct survey instrument measuring time management and procrastination behaviors, adapting items from validated scales; coordinating data collection in introductory STEM courses; contributing to the design of a time management app and behavioral intervention for college students.</p>
-    </div>
-
-    <p class="proj-group-label" style="margin-top:32px;">Past Projects</p>
-
-    <div class="project">
-      <div class="project-header">
-        <h3>NSF-CAREER Grant: Cultivating Environmental Science Data Agency Through Data Storytelling and Issue-Based Learning</h3>
-        <span class="meta">U. Nevada, Reno · 2024</span>
-      </div>
-      <p class="role">Research Assistant · PI: Dr. Ke Li</p>
-      <p>Co-designed K–12 wildfire curricula and teacher professional development materials; conducted literature review, supported IRB development, and contributed to overall research design.</p>
-    </div>
-
-    <div class="project">
-      <div class="project-header">
-        <h3>Novice Programmer Stress: Patterns, Implications, and Multimodal Prediction</h3>
-        <span class="meta">Harvard · 2023–2024</span>
-      </div>
-      <p class="role">Research Assistant · Harvard LIT Lab · Collaborators: Dr. G. Sung &amp; Dr. B. Schneider</p>
-      <p>Analyzed multimodal data (surveys, sensors, video, logs) from Python workshops; coded 1,230 units of qualitative data in ELAN; co-authored ICLS 2025 paper.</p>
-    </div>
-
-    <div class="project">
-      <div class="project-header">
-        <h3>Practice-Based Teacher Preparation: Acknowledging Competence</h3>
-        <span class="meta">Harvard · 2024</span>
-      </div>
-      <p class="role">Research/Teaching Assistant · Supervisors: Dr. H. Hill &amp; Dr. F. Forzani</p>
-      <p>Led RCT intervention with 50+ preservice teachers; coded 120 teaching videos to assess positioning behaviors and training effectiveness.</p>
-    </div>
-
-    <div class="project">
-      <div class="project-header">
-        <h3>Faculty–Student Ratio and Retention in U.S. Higher Education</h3>
-        <span class="meta">Harvard · 2023</span>
-      </div>
-      <p class="role">Project Leader · Supervisor: Dr. Joe McIntyre</p>
-      <p>Cleaned IPEDS 2021 data (296K observations); fitted logistic and hierarchical regression models in R; visualized results with ggplot2.</p>
-    </div>
-
-    <div class="project">
-      <div class="project-header">
-        <h3>Emotional Labor in Doctoral Supervision: A Qualitative Study in Chinese Universities</h3>
-        <span class="meta">ECNU · 2019–2024</span>
-      </div>
-      <p class="role">Project Leader · Supervisor: Dr. Linlin Li</p>
-      <p>Conducted focus-group interviews with 60 supervisors and doctoral students; coded data in NVivo; manuscript in preparation.</p>
-    </div>
-
-    <div class="project">
-      <div class="project-header">
-        <h3>Shanghai Online Teaching &amp; Learning Survey During COVID-19 (SOTL-T)</h3>
-        <span class="meta">ECNU · 2019–2021</span>
-      </div>
-      <p class="role">Project Member · Supervisors: Dr. G. Yan &amp; Dr. J. Guo</p>
-      <p>Administered survey to 11,188 teachers across 76 universities; analyzed data in Stata; presented findings to Shanghai Education Commission.</p>
-    </div>
-  </section>
-
-  <!-- Publications -->
-  <section id="publications">
-    <h2>Publications &amp; Presentations</h2>
-
-    <div class="pub-group">
-      <h3>Working Papers</h3>
-      <div class="pub-item">
-        Sung, G., Yun, H., <strong>Feng, Y.</strong>, Freitag, J., Chen, S., &amp; Schneider, B.
-        <span class="pub-title">How Novice Programmers Use GenAI in the Wild: Performance, Process, and Affect During Debugging.</span>
-        <span class="pub-status">Under Review · <em>Computers &amp; Education</em></span>
-      </div>
-      <div class="pub-item">
-        <strong>Feng, Y.</strong>, &amp; Li, L.
-        <span class="pub-title">Emotional Labor and Supervisory Relationships in Doctoral Supervision: A Qualitative Study in Chinese Universities.</span>
-        <span class="pub-status">In Preparation</span>
-      </div>
-    </div>
-
-    <div class="pub-group">
-      <h3>Conference Presentations</h3>
-      <div class="pub-item">
-        Yun, H., Sung, G., <strong>Feng, Y.</strong>, &amp; Schneider, B. (2025).
-        <span class="pub-title">Emerging Debugging Strategies of Novice Programmers: The Role of Self-Efficacy.</span>
-        <em>Proceedings of ICLS 2025</em> (pp. 3221–3223).
-      </div>
-      <div class="pub-item">
-        Li L., &amp; <strong>Feng Y.</strong> (2020, Oct.).
-        <span class="pub-title">A case study of supervisory relationships through the perspective of emotional labor.</span>
-        6th Forum on Empirical Education Research. Shanghai, China.
-      </div>
-      <div class="pub-item">
-        <strong>Feng Y.</strong> (2020, Oct.).
-        <span class="pub-title">Explore the phenomenon of university dropouts: A qualitative study of five cases.</span>
-        6th Forum on Empirical Education Research. Shanghai, China.
-      </div>
-    </div>
-
-    <div class="pub-group">
-      <h3>Journal Articles</h3>
-      <div class="pub-item">
-        Li L., &amp; <strong>Feng Y.</strong> (2019).
-        <span class="pub-title">The knowledge genealogy of international Chinese education research: Theme and frontier analysis.</span>
-        <em>Exploring Education Development, 8</em>(3), 17–24.
-      </div>
-      <div class="pub-item">
-        Yang J., &amp; <strong>Feng Y.</strong> (2017).
-        <span class="pub-title">Urban women's emotional self-expression and identity construction.</span>
-        <em>Fujian Tribune, The Humanities &amp; Social Science, 7</em>(3), 96–102.
-      </div>
-    </div>
-  </section>
-
-  <!-- Teaching -->
-  <section id="teaching">
-    <h2>Teaching</h2>
-
-    <div class="teach-item">
-      <h3>EDUS040 — Applied Linear Regression</h3>
-      <p class="teach-meta">Teaching Fellow · Harvard Graduate School of Education · 2024</p>
-      <p>Led weekly lab sections in R/Stata; graded assignments and gave individualized feedback; co-developed course materials with faculty.</p>
-    </div>
-
-    <div class="teach-item">
-      <h3>Education and Self Development &amp; Introduction to Qualitative Research</h3>
-      <p class="teach-meta">Teaching Assistant · East China Normal University · 2019–2021</p>
-    </div>
-  </section>
-
-  <!-- Education -->
-  <section id="education">
-    <h2>Education</h2>
-
-    <div class="edu-item">
-      <div class="edu-left">
-        <strong>University of California, Irvine</strong><br>
-        Ph.D. in Education Policy and Social Context
-      </div>
-      <div class="edu-right">2025–Present</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-left">
-        <strong>Harvard University</strong><br>
-        M.Ed., Educational Policy and Analysis
-      </div>
-      <div class="edu-right">2023–2024</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-left">
-        <strong>East China Normal University</strong><br>
-        M.Ed., Higher Education
-      </div>
-      <div class="edu-right">2018–2021</div>
-    </div>
-  </section>
-
-  <footer class="main-footer">
-    Yan Feng · School of Education, University of California, Irvine · <a href="mailto:yanf16@uci.edu">yanf16@uci.edu</a>
-  </footer>
-
+<div class="page-nav" id="pageNav" aria-label="Section navigation">
+  <button id="pnPrev" aria-label="Previous section" title="Previous (K / ↑)">↑</button>
+  <div class="pn-count"><span id="pnCur">1</span>/<span id="pnTotal">7</span></div>
+  <button id="pnNext" aria-label="Next section" title="Next (J / ↓ / Space)">↓</button>
 </div>
-</div><!-- /.page -->
+
+<div class="shell">
+
+  <!-- SIDE NAV -->
+  <aside class="nav">
+    <div class="mark">
+      Yan <em>Feng</em>
+      <span class="sub">Ph.D. Student · UC Irvine</span>
+    </div>
+
+    <nav class="toc" id="toc">
+      <a href="#about"><span class="num">01</span><span>About</span><span class="dot"></span></a>
+      <a href="#education"><span class="num">02</span><span>Education</span><span class="dot"></span></a>
+      <a href="#research"><span class="num">03</span><span>Research</span><span class="dot"></span></a>
+      <a href="#publications"><span class="num">04</span><span>Publications</span><span class="dot"></span></a>
+      <a href="#teaching"><span class="num">05</span><span>Teaching &amp; Awards</span><span class="dot"></span></a>
+      <a href="#guestbook"><span class="num">06</span><span>Guestbook</span><span class="dot"></span></a>
+      <a href="#contact"><span class="num">07</span><span>Contact</span><span class="dot"></span></a>
+    </nav>
+
+    <div class="status">
+      <div class="live" id="liveNow">Available for collaboration</div>
+      <div style="margin-top:6px">Irvine, CA · <span id="localTime">—</span></div>
+      <div style="margin-top:2px">Updated Spring 2026</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-eyebrow">
+        <span>Yan Feng</span>
+        <span class="dot">•</span>
+        <span class="vol">Personal Site</span>
+        <span class="dot">•</span>
+        <span class="hero-eyebrow-r">MMXXVI</span>
+      </div>
+
+      <div class="hero-cover">
+        <figure class="portrait-stamp">
+          <img src="assets/portrait.jpeg" alt="Yan Feng" />
+        </figure>
+
+        <div class="hero-name">
+          <h1>Yan <em>Feng</em></h1>
+          <div class="name-swallow" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M2.5 14.5 C 5 12, 9 10.5, 12 11 C 8 9, 5.5 6.5, 4 3.5 C 8 6, 11 7.5, 12 8 C 12.4 6.2, 13 4.5, 14 3 C 14.2 5.2, 14.3 7, 14 8.4 C 15.5 8, 18 7.2, 21.5 5.5 C 19 8.5, 16.2 10.4, 13 11.2 C 15.8 11.8, 19 13, 21.5 15 C 17.5 13.8, 14 13.6, 11.8 13.8 C 9.5 14, 6 15.5, 2.5 14.5 Z"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="hero-role">
+          <span class="rl rl-1">Ph.D. Student · Education Policy &amp; Social Context, UC Irvine</span>
+        </div>
+      </div>
+
+      <div class="hero-rule" aria-hidden="true"></div>
+
+      <div class="hero-tagline">
+        <div class="tagline-swallow" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M2.5 14.5 C 5 12, 9 10.5, 12 11 C 8 9, 5.5 6.5, 4 3.5 C 8 6, 11 7.5, 12 8 C 12.4 6.2, 13 4.5, 14 3 C 14.2 5.2, 14.3 7, 14 8.4 C 15.5 8, 18 7.2, 21.5 5.5 C 19 8.5, 16.2 10.4, 13 11.2 C 15.8 11.8, 19 13, 21.5 15 C 17.5 13.8, 14 13.6, 11.8 13.8 C 9.5 14, 6 15.5, 2.5 14.5 Z"/>
+          </svg>
+        </div>
+        <span class="hero-quote-mark">“</span>God feeds every bird,<br/>but doesn’t put it right in its nest.<span class="hero-quote-mark">”</span>
+        <span class="hero-attrib">— Josiah Gilbert Holland</span>
+      </div>
+
+      <div class="hero-contact-r" style="display:none">
+        <a href="mailto:yanf16@uci.edu">yanf16@uci.edu</a>
+        <a href="#guestbook">Leave a Note</a>
+        <a href="#">Google Scholar</a>
+      </div>
+
+      <figure class="portrait" style="display:none"></figure>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="sec-label">
+        <span>01 — About</span><span class="rule"></span><span class="meta">Research statement</span>
+      </div>
+      <div class="about">
+        <div>
+          <p>My research examines how <strong>postsecondary institutions</strong> design and implement policies that shape the <strong>teaching and learning environment</strong>, and how these policies affect <strong>student academic and labor market outcomes</strong>.</p>
+          <p>Across projects, including the effects of condensed course formats in the Virginia Community College System, course modality and transfer student outcomes in undergraduate business administration, and the design of behavioral interventions for college STEM students, my work combines analyses of <strong>large-scale administrative data</strong> with <strong>design-based research</strong> to estimate causal effects and examine underlying mechanisms.</p>
+          <p>I am also attentive to how <strong>educational technology and AI</strong> are changing how institutions teach and students learn.</p>
+
+          <div class="focus-tags">
+            <span class="focus-label">Research Focus</span>
+            <span class="tag-chip">Higher Education Policy</span>
+            <span class="tag-chip">Teaching &amp; Learning</span>
+            <span class="tag-chip">Causal Inference</span>
+            <span class="tag-chip">Design-Based Research</span>
+            <span class="tag-chip">Instructional Design</span>
+            <span class="tag-chip">Online Education</span>
+            <span class="tag-chip">Community Colleges</span>
+            <span class="tag-chip">Transfer Students</span>
+            <span class="tag-chip">AI in Education</span>
+          </div>
+        </div>
+        <div class="facts">
+          <span class="k">Field</span>
+          Education Policy · Postsecondary
+          <span class="k">Affiliations</span>
+          UC Irvine · Harvard HGSE (alum) · ECNU (alum)
+          <span class="k">Methods</span>
+          Quasi-experimental &amp; causal inference<br/>Mixed methods &amp; qualitative analysis<br/>Learning analytics &amp; survey design
+          <span class="k">Based</span>
+          Irvine, California
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="sec-label"><span>02 — Education</span><span class="rule"></span><span class="meta">Four degrees</span></div>
+      <div class="edu">
+        <div class="edu-row">
+          <div class="year">2025 — Present</div>
+          <div class="degree">Ph.D., Education Policy and Social Context<em>Doctoral coursework · Year 1</em></div>
+          <div class="inst">University of California, Irvine<span>School of Education</span></div>
+          <div class="loc">Irvine, CA</div>
+        </div>
+        <div class="edu-row">
+          <div class="year">2023 — 2024</div>
+          <div class="degree">M.Ed., Educational Policy and Analysis<em>Quantitative methods concentration</em></div>
+          <div class="inst">Harvard University<span>Graduate School of Education</span></div>
+          <div class="loc">Cambridge, MA</div>
+        </div>
+        <div class="edu-row">
+          <div class="year">2018 — 2021</div>
+          <div class="degree">M.Ed., Higher Education<em>Excellent Dissertation · Top 49 / 2,000+</em></div>
+          <div class="inst">East China Normal University<span>ECNU · 华东师范大学</span></div>
+          <div class="loc">Shanghai</div>
+        </div>
+        <div class="edu-row">
+          <div class="year">2014 — 2018</div>
+          <div class="degree">B.Mgmt., Public Utility Administration</div>
+          <div class="inst">East China University of Science &amp; Technology<span>ECUST · 华东理工大学</span></div>
+          <div class="loc">Shanghai</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <div class="sec-label"><span>03 — Research</span><span class="rule"></span><span class="meta">Nine selected projects · click to expand</span></div>
+      <div class="research-grid" id="projects"></div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <div class="sec-label"><span>04 — Publications &amp; Presentations</span><span class="rule"></span><span class="meta">Select · 2017 — 2025</span></div>
+      <div class="pub-filters" id="pubFilters">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="journal">Journal</button>
+        <button data-filter="conference">Conference</button>
+        <button data-filter="working">Working</button>
+      </div>
+      <div class="pub-list" id="pubs"></div>
+    </section>
+
+    <!-- TEACHING + AWARDS -->
+    <section id="teaching">
+      <div class="sec-label"><span>05 — Teaching &amp; Awards</span><span class="rule"></span><span class="meta">Pedagogy · Recognition</span></div>
+      <div class="twocol">
+        <div>
+          <h2>Teaching</h2>
+          <div class="item">
+            <div class="t">EDUS040 — <em>Applied Linear Regression</em></div>
+            <div class="s">Teaching Fellow · Harvard HGSE · 2024</div>
+          </div>
+          <div class="item">
+            <div class="t">Education and Self Development</div>
+            <div class="s">Teaching Assistant · ECNU · 2019 — 2021</div>
+          </div>
+          <div class="item">
+            <div class="t">Introduction to <em>Qualitative Research</em></div>
+            <div class="s">Seminar Leader · ECNU · 2019 — 2021</div>
+          </div>
+        </div>
+        <div>
+          <h2>Honors &amp; Awards</h2>
+          <div class="item">
+            <div class="t">Excellent Dissertation</div>
+            <div class="s">ECNU · Top 49 of 2,000+ · 2021</div>
+          </div>
+          <div class="item">
+            <div class="t">Publishing Wisdom Scholarship</div>
+            <div class="s">Top 100 of 8,712 applicants · 2019</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS REMOVED -->
+
+    <!-- GUESTBOOK -->
+    <section id="guestbook">
+      <div class="sec-label"><span>06 — Guestbook</span><span class="rule"></span><span class="meta">Leave a note · sends to my inbox</span></div>
+      <div class="guestbook">
+        <div class="gb-intro">
+          <p>Thoughts on the work, a question, an introduction, or just hello — whatever you’d like to share. Messages arrive directly in my email; I read every one.</p>
+        </div>
+
+        <form class="gb-form" id="guestbookForm" action="https://formspree.io/f/mqewqwzj" method="POST">
+          <div class="gb-row gb-row-2">
+            <label class="gb-field">
+              <span class="gb-label">Name</span>
+              <input type="text" name="name" required autocomplete="name" placeholder="" />
+            </label>
+            <label class="gb-field">
+              <span class="gb-label">Email <em>optional, if you’d like a reply</em></span>
+              <input type="email" name="email" autocomplete="email" placeholder="" />
+            </label>
+          </div>
+          <label class="gb-field">
+            <span class="gb-label">Affiliation <em>optional</em></span>
+            <input type="text" name="affiliation" placeholder="" />
+          </label>
+          <label class="gb-field">
+            <span class="gb-label">Message</span>
+            <textarea name="message" rows="5" required placeholder=""></textarea>
+          </label>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+          <div class="gb-submit-row">
+            <button type="submit" class="gb-submit">
+              <span class="gb-submit-txt">Send note</span>
+              <span class="gb-submit-arrow">→</span>
+            </button>
+            <div class="gb-status" id="gbStatus"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <footer id="contact">
+      <div class="grid">
+        <div>
+          <h3>Let's <em>talk</em><br>about the work.</h3>
+        </div>
+        <div>
+          <div class="col-label">Reach out</div>
+          <a href="mailto:yanf16@uci.edu">yanf16@uci.edu ↗</a>
+          <a href="#guestbook">Leave a note ↗</a>
+        </div>
+        <div>
+          <div class="col-label">Elsewhere</div>
+          <a href="#">Google Scholar ↗</a>
+          <a href="#">ORCID ↗</a>
+          <a href="#">LinkedIn ↗</a>
+          <a href="#">ResearchGate ↗</a>
+        </div>
+      </div>
+      <div class="fine">
+        <div>© 2026 Yan Feng. Set in Newsreader &amp; JetBrains Mono.</div>
+        <div>Last updated — Spring 2026</div>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<!-- Floating pager (slide mode) -->
+<div class="pager" role="navigation" aria-label="Section pager">
+  <button class="pg-prev" aria-label="Previous section" title="Previous (←)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <div class="count"><strong id="pgCur">01</strong> <span style="opacity:.4">/</span> <span id="pgTotal">08</span></div>
+  <button class="pg-next" aria-label="Next section" title="Next (→)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
+<!-- TWEAKS -->
+<div id="tweaks-panel">
+  <h4>Tweaks <span>●</span></h4>
+  <div class="field">
+    <label>Accent hue</label>
+    <input type="range" id="hueRange" min="0" max="360" step="1">
+    <div class="accent-row" id="hueSwatches"></div>
+  </div>
+  <div class="field">
+    <label>Density</label>
+    <div class="seg" id="densitySeg">
+      <button data-v="comfortable">Comfortable</button>
+      <button data-v="dense">Dense</button>
+    </div>
+  </div>
+  <div class="field">
+    <label>Typeface</label>
+    <div class="seg" id="typeSeg">
+      <button data-v="serif">Serif</button>
+      <button data-v="sans">Sans</button>
+    </div>
+  </div>
+  <div class="field">
+    <label>Theme</label>
+    <div class="seg" id="themeSeg">
+      <button data-v="light">Light</button>
+      <button data-v="dark">Dark</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ======= DATA =======
+const PROJECTS = [
+  {
+    when: "2025 — Present", inst: "UC Irvine",
+    title: "The Effects of Condensed Course Formats on Student Achievement",
+    role: "Graduate Student Researcher", pi: "with Dr. Di Xu & Dr. Xunfei Li",
+    funder: "Ascendium Grant",
+    desc: "Analyze large-scale administrative data to estimate the causal effects of condensed course scheduling policies on student academic and labor-market outcomes in the Virginia Community College System. Conduct heterogeneity analyses by student subgroup, discipline, and enrollment pattern."
+  },
+  {
+    when: "2025 — Present", inst: "UC Irvine · Merage",
+    title: "Modality, Student Characteristics & Academic Outcomes in Undergraduate Business Administration",
+    role: "Graduate Student Researcher", pi: "with Dr. Devin Shanthikumar, Dr. Di Xu & Dr. Sabrina Solanki",
+    funder: "PERI",
+    desc: "Mixed-methods program evaluation at the Paul Merage School of Business. Analyze online vs. face-to-face enrollment patterns and transfer-student sorting; develop a causal identification strategy to estimate modality effects on student outcomes."
+  },
+  {
+    when: "2025 — Present", inst: "UC Irvine",
+    title: "TimeWise — Time Management &amp; Learning Behaviors in College STEM Courses",
+    role: "Research Assistant", pi: "with Dr. Di Xu & Dr. Qiujie Li",
+    desc: "Design-based research combining AI-driven tools and learning analytics to help instructors and students understand STEM learning behavior. Develop and validate a multi-construct survey instrument; design and pilot a behavioral intervention targeting time management and procrastination."
+  },
+  {
+    when: "2024", inst: "U. Nevada, Reno",
+    title: "Cultivating Environmental Science Data Agency through Data Storytelling",
+    role: "Research Assistant", pi: "with Dr. Ke Li",
+    funder: "NSF CAREER",
+    desc: "Co-designed K–12 wildfire curricula and teacher professional development materials; conducted literature review, supported IRB development, and contributed to overall research design."
+  },
+  {
+    when: "2023 — 2024", inst: "Harvard",
+    title: "Novice Programmer Stress — Patterns, Implications, and Multimodal Prediction",
+    role: "Research Assistant", pi: "with Dr. Gahyun Callie Sung & Dr. Bertrand Schneider",
+    desc: "Analyzed multimodal data (surveys, sensors, video, logs) from Python workshops; coded 1,230 units of qualitative data in ELAN; co-authored ICLS 2025 paper on emerging debugging strategies of novice programmers."
+  },
+  {
+    when: "2024", inst: "Harvard",
+    title: "Practice-Based Teacher Preparation — Acknowledging Competence",
+    role: "Research/Teaching Assistant", pi: "with Dr. Heather Hill & Dr. Francesca Forzani",
+    desc: "Led an RCT intervention with 50+ preservice teachers; coded 120 teaching videos to assess positioning behaviors and training effectiveness."
+  },
+  {
+    when: "2023", inst: "Harvard",
+    title: "Faculty–Student Ratio &amp; Retention in U.S. Higher Education",
+    role: "Project Leader", pi: "with Dr. Joe McIntyre",
+    desc: "Cleaned IPEDS 2021 data (296K observations); fitted logistic and hierarchical regression models in R; visualized results with ggplot2."
+  },
+  {
+    when: "2019 — 2024", inst: "ECNU",
+    title: "Emotional Labor in Doctoral Supervision",
+    role: "Project Leader", pi: "with Dr. Linlin Li",
+    desc: "Qualitative study of supervisor–doctoral student relationships through the lens of emotional labor. Conducted semi-structured focus-group interviews with 32 supervisors and 28 doctoral students; coded data in NVivo. Identified how surface acting damages supervisory relationships and academic engagement, with implications for university mentoring policy. First-authored manuscript under journal review."
+  },
+  {
+    when: "2019 — 2021", inst: "ECNU",
+    title: "Shanghai Online Teaching Survey during COVID-19 (SOTL-T)",
+    role: "Project Member", pi: "with Dr. Guangcai Yan & Dr. Jiao Guo",
+    desc: "Administered survey to 11,188 teachers across 76 universities; analyzed data in Stata; presented findings to the Shanghai Education Commission."
+  }
+];
+
+const PUBS = [
+  {
+    year: 2025, type: "conference",
+    ref: `Yun, H., Sung, G., <strong>Feng, Y.</strong>, &amp; Schneider, B. <em>Emerging Debugging Strategies of Novice Programmers: The Role of Self-Efficacy.</em> <span class="venue">Proceedings of ICLS 2025, pp. 3221–3223 · <span class="tag">Peer-Reviewed</span></span>`
+  },
+  {
+    year: 2025, type: "working",
+    ref: `Sung, G., Yun, H., <strong>Feng, Y.</strong>, Freitag, J., Chen, S., &amp; Schneider, B. <em>How Novice Programmers Use GenAI in the Wild: Performance, Process, and Affect During Debugging.</em> <span class="venue"><span class="tag">Under Review</span> Computers &amp; Education</span>`
+  },
+  {
+    year: 2024, type: "working",
+    ref: `<strong>Feng, Y.</strong>, &amp; Li, L. <em>Emotional Labor and Supervisory Relationships in Doctoral Supervision — A Qualitative Study in Chinese Universities.</em> <span class="venue"><span class="tag">Working Paper</span> In preparation</span>`
+  },
+  {
+    year: 2020, type: "conference",
+    ref: `Li, L., &amp; <strong>Feng, Y.</strong> <em>A Case Study of Supervisory Relationships through the Perspective of Emotional Labor.</em> <span class="venue">6th Forum on Empirical Education Research · Shanghai</span>`
+  },
+  {
+    year: 2020, type: "conference",
+    ref: `<strong>Feng, Y.</strong> <em>Exploring the Phenomenon of University Dropouts — A Qualitative Study of Five Cases.</em> <span class="venue">6th Forum on Empirical Education Research · Shanghai</span>`
+  },
+  {
+    year: 2019, type: "journal",
+    ref: `Li, L., &amp; <strong>Feng, Y.</strong> <em>The Knowledge Genealogy of International Chinese Education Research: Theme and Frontier Analysis.</em> <span class="venue">Exploring Education Development, 8(3), 17–24</span>`
+  },
+  {
+    year: 2017, type: "journal",
+    ref: `Yang, J., &amp; <strong>Feng, Y.</strong> <em>Urban Women's Emotional Self-Expression and Identity Construction.</em> <span class="venue">Fujian Tribune — The Humanities &amp; Social Science, 7(3), 96–102</span>`
+  }
+];
+
+// SKILLS removed
+
+// ======= RENDER =======
+const projEl = document.getElementById('projects');
+projEl.innerHTML = PROJECTS.map((p,i)=>`
+  <div class="project" data-i="${i}">
+    <div class="when">${p.when}<span>${p.inst}</span>${p.funder?`<span style="color:var(--accent)">${p.funder}</span>`:''}</div>
+    <div class="body">
+      <h3>${p.title}</h3>
+      <p class="role"><em>${p.role}</em>${p.pi?` · ${p.pi}`:''}</p>
+      <div class="desc"><div>${p.desc}</div></div>
+    </div>
+    <div class="toggle">+</div>
+  </div>
+`).join('');
+projEl.querySelectorAll('.project').forEach(el=>{
+  el.addEventListener('click', ()=> el.classList.toggle('open'));
+});
+// All projects start closed — uniform collapsible behavior
+
+const pubsEl = document.getElementById('pubs');
+pubsEl.innerHTML = PUBS.map((p,i)=>`
+  <div class="pub" data-type="${p.type}" data-year="${p.year}">
+    <div class="idx">${String(i+1).padStart(2,'0')}</div>
+    <div class="year">${p.year}</div>
+    <div class="ref">${p.ref}</div>
+  </div>
+`).join('');
+
+document.getElementById('pubFilters').addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#pubFilters button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  const f = b.dataset.filter;
+  document.querySelectorAll('.pub').forEach(p=>{
+    p.classList.toggle('hidden', f !== 'all' && p.dataset.type !== f);
+  });
+});
+
+// skills grid removed
+
+// ======= GUESTBOOK =======
+const gbForm = document.getElementById('guestbookForm');
+const gbStatus = document.getElementById('gbStatus');
+if (gbForm) {
+  gbForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = gbForm.querySelector('.gb-submit');
+    const txt = btn.querySelector('.gb-submit-txt');
+    const originalTxt = txt.textContent;
+    btn.disabled = true;
+    txt.textContent = 'Sending…';
+    gbStatus.className = 'gb-status';
+    gbStatus.textContent = '';
+
+    const action = gbForm.getAttribute('action') || '';
+    if (action.includes('YOUR_FORMSPREE_ID')) {
+      // Not configured yet — demo mode
+      setTimeout(() => {
+        btn.disabled = false;
+        txt.textContent = originalTxt;
+        gbStatus.className = 'gb-status success';
+        gbStatus.textContent = '✓ Demo mode — configure Formspree endpoint to go live.';
+        gbForm.reset();
+      }, 700);
+      return;
+    }
+
+    try {
+      const res = await fetch(action, {
+        method: 'POST',
+        body: new FormData(gbForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        gbStatus.className = 'gb-status success';
+        gbStatus.textContent = '✓ Sent. Thank you — I\'ll read it soon.';
+        gbForm.reset();
+      } else {
+        gbStatus.className = 'gb-status error';
+        gbStatus.textContent = '✗ Something went wrong. Try email instead.';
+      }
+    } catch (err) {
+      gbStatus.className = 'gb-status error';
+      gbStatus.textContent = '✗ Network error. Try email instead.';
+    }
+    btn.disabled = false;
+    txt.textContent = originalTxt;
+  });
+}
+
+// ======= HERO ROLE LINES REVEAL =======
+(function(){
+  const lines = document.querySelectorAll('.hero-role .rl');
+  lines.forEach((l, i) => {
+    setTimeout(() => l.classList.add('in'), 1100 + i * 260);
+  });
+})();
+
+// ======= CUSTOM CURSOR =======
+(function(){
+  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const ring = document.createElement('div');
+  ring.className = 'cursor-ring';
+  ring.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M2.5 14.5 C 5 12, 9 10.5, 12 11 C 8 9, 5.5 6.5, 4 3.5 C 8 6, 11 7.5, 12 8 C 12.4 6.2, 13 4.5, 14 3 C 14.2 5.2, 14.3 7, 14 8.4 C 15.5 8, 18 7.2, 21.5 5.5 C 19 8.5, 16.2 10.4, 13 11.2 C 15.8 11.8, 19 13, 21.5 15 C 17.5 13.8, 14 13.6, 11.8 13.8 C 9.5 14, 6 15.5, 2.5 14.5 Z"/>
+  </svg>`;
+  const dot = document.createElement('div');
+  dot.className = 'cursor-dot';
+  document.body.append(ring, dot);
+
+  let tx = 0, ty = 0, rx = 0, ry = 0;
+  let dx = 0, dy = 0;
+  let active = false;
+
+  window.addEventListener('mousemove', (e) => {
+    tx = e.clientX; ty = e.clientY;
+    dx = e.clientX; dy = e.clientY;
+    dot.style.left = dx + 'px';
+    dot.style.top = dy + 'px';
+    if (!active) {
+      active = true;
+      ring.classList.add('active');
+      dot.classList.add('active');
+      rx = tx; ry = ty;
+    }
+  });
+  window.addEventListener('mouseleave', () => {
+    ring.classList.remove('active');
+    dot.classList.remove('active');
+    active = false;
+  });
+  window.addEventListener('mousedown', () => ring.classList.add('pressed'));
+  window.addEventListener('mouseup', () => ring.classList.remove('pressed'));
+
+  // Hoverable selector
+  const hoverSel = 'a, button, [role="button"], input, textarea, select, .project, .tag-chip, .portrait-stamp';
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(hoverSel)) ring.classList.add('hover');
+    if (e.target.closest(hoverSel)) dot.classList.add('hover');
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(hoverSel) && !e.relatedTarget?.closest?.(hoverSel)) {
+      ring.classList.remove('hover');
+      dot.classList.remove('hover');
+    }
+  });
+
+  // Easing loop for ring
+  function frame() {
+    rx += (tx - rx) * 0.18;
+    ry += (ty - ry) * 0.18;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+// ======= HERO NAME SWALLOW (trigger when name scrolls into view) =======
+(function(){
+  const name = document.querySelector('.hero-name');
+  if (!name) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        name.classList.add('flight');
+        io.unobserve(name);
+      }
+    });
+  }, { threshold: 0.4 });
+  io.observe(name);
+})();
+
+// ======= TAGLINE WORD REVEAL =======
+(function(){
+  const tag = document.querySelector('.hero-tagline');
+  if (!tag) return;
+  // Split text nodes into words, preserving <br> and existing spans
+  const walk = (el) => {
+    const children = [...el.childNodes];
+    children.forEach(node => {
+      if (node.nodeType === 3) {
+        const words = node.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        words.forEach(w => {
+          if (!w) return;
+          if (/^\s+$/.test(w)) {
+            frag.appendChild(document.createTextNode(w));
+          } else {
+            const s = document.createElement('span');
+            s.className = 'w';
+            s.textContent = w;
+            frag.appendChild(s);
+          }
+        });
+        node.replaceWith(frag);
+      } else if (node.nodeType === 1 && node.tagName !== 'BR' && !node.classList.contains('hero-attrib') && !node.classList.contains('tagline-swallow')) {
+        // wrap inline spans (like quote-mark) as word too
+        if (!node.classList.contains('w')) {
+          node.classList.add('w');
+        }
+      }
+    });
+  };
+  walk(tag);
+  // Stagger delays
+  const words = tag.querySelectorAll('.w');
+  words.forEach((w, i) => {
+    w.style.transitionDelay = (1.6 + i * 0.09) + 's';
+  });
+  // Drop will-change after all words settle so it stops holding a layer
+  const totalMs = 1600 + words.length * 90 + 700;
+  setTimeout(() => {
+    words.forEach(w => { w.style.willChange = 'auto'; });
+  }, totalMs + 200);
+  // Trigger when tagline scrolls into view
+  const tagIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tag.classList.add('in');
+        tag.classList.add('flight');
+        tagIo.unobserve(tag);
+      }
+    });
+  }, { threshold: 0.3 });
+  tagIo.observe(tag);
+})();
+
+// ======= REVEAL ON SCROLL =======
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        if (e.target.tagName === 'SECTION') e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+
+  // Tag non-hero sections and major content blocks
+  document.querySelectorAll('main > section:not(.hero)').forEach(s => {
+    s.classList.add('reveal');
+    io.observe(s);
+  });
+  // Stagger children of these containers
+  document.querySelectorAll('.edu, .research-grid, .pub-list, .twocol').forEach(el=>{
+    el.classList.add('reveal-child');
+    io.observe(el);
+  });
+})();
+
+// ======= KEYBOARD + BUTTON NAVIGATION =======
+(function(){
+  const getTargets = () => [
+    document.querySelector('.hero'),
+    ...document.querySelectorAll('main > section')
+  ].filter(Boolean);
+
+  const prevBtn = document.getElementById('pnPrev');
+  const nextBtn = document.getElementById('pnNext');
+  const curEl = document.getElementById('pnCur');
+  const totalEl = document.getElementById('pnTotal');
+  if (totalEl) totalEl.textContent = getTargets().length;
+
+  function currentIndex(targets) {
+    const y = window.scrollY + 80;
+    let idx = 0;
+    targets.forEach((t, i) => {
+      if (t.offsetTop <= y) idx = i;
+    });
+    return idx;
+  }
+
+  function jump(delta) {
+    const targets = getTargets();
+    const i = currentIndex(targets);
+    const next = Math.max(0, Math.min(targets.length - 1, i + delta));
+    const el = targets[next];
+    if (!el) return;
+    window.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
+  }
+
+  function updateButtons() {
+    const targets = getTargets();
+    const i = currentIndex(targets);
+    if (curEl) curEl.textContent = i + 1;
+    if (prevBtn) prevBtn.disabled = i <= 0;
+    if (nextBtn) nextBtn.disabled = i >= targets.length - 1;
+  }
+
+  prevBtn?.addEventListener('click', () => jump(-1));
+  nextBtn?.addEventListener('click', () => jump(+1));
+
+  document.addEventListener('keydown', (e) => {
+    const tag = e.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+    if (e.key === 'j' || e.key === 'ArrowDown' || e.key === 'PageDown' ||
+        (e.key === ' ' && !e.shiftKey)) {
+      e.preventDefault(); jump(+1);
+    } else if (e.key === 'k' || e.key === 'ArrowUp' || e.key === 'PageUp' ||
+               (e.key === ' ' && e.shiftKey)) {
+      e.preventDefault(); jump(-1);
+    } else if (e.key === 'g' || e.key === 'Home') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (e.key === 'G' || e.key === 'End') {
+      e.preventDefault();
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  });
+
+  // Track position for counter + disabled state
+  let rafId = null;
+  window.addEventListener('scroll', () => {
+    if (rafId) return;
+    rafId = requestAnimationFrame(() => { updateButtons(); rafId = null; });
+  }, { passive: true });
+  updateButtons();
+})();
+
+// ======= SCROLL SPY =======
+const links = document.querySelectorAll('#toc a');
+const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      links.forEach(l=>l.classList.remove('active'));
+      const link = document.querySelector(`#toc a[href="#${en.target.id}"]`);
+      link?.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s=> s && io.observe(s));
+
+// ======= LOCAL TIME (Irvine, PT) =======
+function updateTime(){
+  const t = new Date().toLocaleTimeString('en-US', { timeZone: 'America/Los_Angeles', hour: '2-digit', minute:'2-digit', hour12:false });
+  document.getElementById('localTime').textContent = t + ' PT';
+}
+updateTime(); setInterval(updateTime, 30000);
+
+// ======= THEME TOGGLE =======
+function setTheme(v){
+  document.documentElement.setAttribute('data-theme', v);
+  document.getElementById('themeBtn').textContent = v === 'dark' ? '☀' : '☾';
+  TWEAKS.dark = (v === 'dark');
+}
+document.getElementById('themeBtn').addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme');
+  setTheme(cur === 'dark' ? 'light' : 'dark');
+  syncSegs();
+});
+
+// ======= APPLY TWEAKS =======
+function applyAccent(hue){
+  const root = document.documentElement;
+  root.style.setProperty('--accent', `oklch(0.56 0.13 ${hue})`);
+  root.style.setProperty('--accent-soft', `oklch(0.56 0.13 ${hue} / 0.08)`);
+  if (document.documentElement.getAttribute('data-theme') === 'dark') {
+    root.style.setProperty('--accent', `oklch(0.72 0.12 ${hue})`);
+    root.style.setProperty('--accent-soft', `oklch(0.72 0.12 ${hue} / 0.12)`);
+  }
+  TWEAKS.accentHue = hue;
+}
+function applyDensity(v){ document.body.classList.toggle('dense', v==='dense'); TWEAKS.density = v; }
+function applyType(v){ document.body.classList.toggle('sans', v==='sans'); TWEAKS.serif = (v==='serif'); }
+
+applyAccent(TWEAKS.accentHue);
+applyDensity(TWEAKS.density);
+applyType(TWEAKS.serif ? 'serif' : 'sans');
+setTheme(TWEAKS.dark ? 'dark' : 'light');
+
+// ======= TWEAKS PANEL =======
+const panel = document.getElementById('tweaks-panel');
+window.addEventListener('message', (e)=>{
+  if(!e.data || !e.data.type) return;
+  if(e.data.type === '__activate_edit_mode') panel.classList.add('on');
+  if(e.data.type === '__deactivate_edit_mode') panel.classList.remove('on');
+});
+// THEN announce availability
+window.parent.postMessage({type:'__edit_mode_available'}, '*');
+
+function persist(edits){
+  window.parent.postMessage({type:'__edit_mode_set_keys', edits}, '*');
+}
+
+// Swatches
+const hues = [35, 220, 160, 280, 10, 60];
+const sw = document.getElementById('hueSwatches');
+sw.innerHTML = hues.map(h=>`<div class="sw" data-h="${h}" style="background:oklch(0.56 0.13 ${h})"></div>`).join('');
+sw.addEventListener('click', e=>{
+  const b = e.target.closest('.sw'); if(!b) return;
+  const h = +b.dataset.h;
+  applyAccent(h); persist({accentHue:h});
+  document.getElementById('hueRange').value = h;
+  syncSwatches();
+});
+document.getElementById('hueRange').addEventListener('input', e=>{
+  applyAccent(+e.target.value); persist({accentHue:+e.target.value}); syncSwatches();
+});
+function syncSwatches(){
+  sw.querySelectorAll('.sw').forEach(el=> el.classList.toggle('active', +el.dataset.h === TWEAKS.accentHue));
+}
+
+function bindSeg(id, apply, keyBuilder){
+  const box = document.getElementById(id);
+  box.addEventListener('click', e=>{
+    const b = e.target.closest('button'); if(!b) return;
+    box.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    apply(b.dataset.v);
+    persist(keyBuilder(b.dataset.v));
+  });
+}
+bindSeg('densitySeg', applyDensity, v => ({density:v}));
+bindSeg('typeSeg', v => applyType(v), v => ({serif: v==='serif'}));
+bindSeg('themeSeg', v => setTheme(v), v => ({dark: v==='dark'}));
+
+function syncSegs(){
+  const markActive = (id, val) => {
+    document.querySelectorAll(`#${id} button`).forEach(b=> b.classList.toggle('active', b.dataset.v===val));
+  };
+  markActive('densitySeg', TWEAKS.density);
+  markActive('typeSeg', TWEAKS.serif ? 'serif':'sans');
+  markActive('themeSeg', TWEAKS.dark ? 'dark':'light');
+  document.getElementById('hueRange').value = TWEAKS.accentHue;
+  syncSwatches();
+}
+syncSegs();
+</script>
+
+<!-- ============== PAGER: SCROLL TO SECTION ============== -->
+<script>
+(function(){
+  const sections = [...document.querySelectorAll('main > section, main > footer')];
+  const total = sections.length;
+  const pgCur = document.getElementById('pgCur');
+  const pgTotal = document.getElementById('pgTotal');
+  const prevBtn = document.querySelector('.pager .pg-prev');
+  const nextBtn = document.querySelector('.pager .pg-next');
+  pgTotal.textContent = String(total).padStart(2, '0');
+
+  // Find current section (the one whose top is closest to — but above — the viewport threshold)
+  function currentIndex() {
+    const threshold = window.innerHeight * 0.35;
+    let idx = 0;
+    for (let i = 0; i < sections.length; i++) {
+      const r = sections[i].getBoundingClientRect();
+      if (r.top - threshold <= 0) idx = i;
+    }
+    return idx;
+  }
+
+  function updatePager() {
+    const idx = currentIndex();
+    pgCur.textContent = String(idx + 1).padStart(2, '0');
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx === total - 1;
+  }
+
+  function scrollToSection(i) {
+    i = Math.max(0, Math.min(total - 1, i));
+    const el = sections[i];
+    // For hero, scroll to very top
+    const top = i === 0 ? 0 : el.getBoundingClientRect().top + window.scrollY - 24;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  prevBtn.addEventListener('click', () => scrollToSection(currentIndex() - 1));
+  nextBtn.addEventListener('click', () => scrollToSection(currentIndex() + 1));
+
+  // Keyboard navigation
+  window.addEventListener('keydown', (e) => {
+    const t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+      e.preventDefault();
+      scrollToSection(currentIndex() + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      scrollToSection(currentIndex() - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      scrollToSection(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      scrollToSection(total - 1);
+    }
+  });
+
+  // Keep pager count in sync with scroll
+  let rafId = null;
+  window.addEventListener('scroll', () => {
+    if (rafId) return;
+    rafId = requestAnimationFrame(() => { updatePager(); rafId = null; });
+  }, { passive: true });
+
+  updatePager();
+})();
+</script>
 </body>
 </html>
